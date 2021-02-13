@@ -43,7 +43,7 @@ class Calculadora extends JFrame implements ActionListener{
 		bBorrarT.addActionListener(this);
 		componente(bBorrarT, 0, 2, 1, 1, 1);
 		
-		bBorrar = new JButton("Borrar");
+		bBorrar = new JButton("<[x]");
 		bBorrar.addActionListener(this);
 		componente(bBorrar, 1, 2, 2, 1, 1);
 		
@@ -134,6 +134,29 @@ class Calculadora extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	
+		if(e.getSource() == b0) {
+			caja.setText(caja.getText()+"0");
+		}else if(e.getSource() == b1) {
+			caja.setText(caja.getText()+"1");
+		}else if(e.getSource() == b2) {
+			caja.setText(caja.getText()+"2");
+		}else if(e.getSource() == b3) {
+			caja.setText(caja.getText()+"3");
+		}else if(e.getSource() == b4) {
+			caja.setText(caja.getText()+"4");
+		}else if(e.getSource() == b5) {
+			caja.setText(caja.getText()+"5");
+		}else if(e.getSource() == b6) {
+			caja.setText(caja.getText()+"6");
+		}else if(e.getSource() == b7) {
+			caja.setText(caja.getText()+"7");
+		}else if(e.getSource() == b8) {
+			caja.setText(caja.getText()+"8");
+		}else if(e.getSource() == b9) {
+			caja.setText(caja.getText()+"9");
+		}
+		
+		
 		
 		
 	}
@@ -145,6 +168,19 @@ public class PruebaCalculadora {
 
 	public static void main(String[] args) {
 
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			System.out.println(UIManager.getInstalledLookAndFeels());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+		
 		SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
