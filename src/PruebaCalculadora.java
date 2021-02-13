@@ -8,12 +8,13 @@ class Calculadora extends JFrame implements ActionListener{
 	GridBagLayout gbl = new GridBagLayout();
 	GridBagConstraints gbc = new GridBagConstraints();
 	
-	
 	JButton b0,b1,b2,b3,b4,b5,b6,b7,b8,b9;
 	JButton bResiduo,bRaiz,bPotencia,bLn,bBorrar,bBorrarT,
 			bDiv,bMul,bRest,bSum,bIgual,bPunto;
 	JTextField caja;
 	
+	String guardar = "";
+	String op = "";
 	
 	public Calculadora() {
 		getContentPane().setLayout(gbl);
@@ -154,9 +155,79 @@ class Calculadora extends JFrame implements ActionListener{
 			caja.setText(caja.getText()+"8");
 		}else if(e.getSource() == b9) {
 			caja.setText(caja.getText()+"9");
+		}else if(e.getSource() == bResiduo) {
+			guardar = caja.getText();
+			caja.setText("");
+			op = "%";
+		}else if(e.getSource() == bRaiz) {
+			if(caja.getText().length()>0) {
+				double num = Double.parseDouble(caja.getText());
+				if(num>0) {
+					num = Math.sqrt(num);
+					caja.setText(Double.toString(num));
+				}
+			}
+		}else if(e.getSource() == bPotencia) {
+			if(caja.getText().length()>0) {
+				double num = Double.parseDouble(caja.getText());
+				num = Math.pow(num, 2);
+				caja.setText(Double.toString(num));
+			}
+		}else if(e.getSource() == bLn) {
+			if(caja.getText().length()>0) {
+				double num = Double.parseDouble(caja.getText());
+				if(num!=0) {
+					num=1/num;
+					caja.setText(Double.toString(num));
+				}
+			}
+		}else if(e.getSource() == bBorrarT) {
+			guardar = "";
+			caja.setText("");
+			op = " ";
+		}else if(e.getSource() == bBorrar) {
+			if(caja.getText().length()>0)
+				caja.setText(caja.getText().substring(0,caja.getText().length()-1));
+		}else if(e.getSource() == bDiv) {
+			guardar = caja.getText();
+			caja.setText("");
+			op = "/";
+		}else if(e.getSource() == bMul) {
+			guardar = caja.getText();
+			caja.setText("");
+			op = "*";
+		}else if(e.getSource() == bRest) {
+			guardar = caja.getText();
+			caja.setText("");
+			op = "-";
+		}else if(e.getSource() == bSum) {
+			guardar = caja.getText();
+			caja.setText("");
+			op = "+";
+		}else if(e.getSource() == bPunto) {
+			if(!caja.getText().contains("."))
+				caja.setText(caja.getText()+".");
+		}else if(e.getSource() == bIgual) {
+			if(op!=" ") {
+				double n1 = Double.parseDouble(guardar);
+				double n2 = Double.parseDouble(caja.getText());
+				double res = 0;
+				switch (op) {
+					case "%" : 
+						res = n1%n2;break;
+					case "/" :
+						res = n1/n2;break;
+					case "*" :
+						res = n1*n2;break;
+					case "-" :
+						res = n1-n2;break;
+					case "+" :
+						res = n1+n2;break;
+					default : break;
+				}
+				caja.setText(Double.toString(res));
+			}
 		}
-		
-		
 		
 		
 	}
